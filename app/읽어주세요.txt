@@ -1,0 +1,26 @@
+# 안드로이드 저장공간
+view - tool window - device file explorer
+
+내부 저장공간
+앱을 설치할때 앱만을 위한 전용공간이 할당됨
+해당 앱에서만 접근 가능
+앱을 삭제하면 해당 공간도 삭제됨
+/data/data/패키지이름
+
+외부 저장공간
+sd카드에 할당된 공간
+모든 앱들이 사용할 수 있는 공용 공간
+단, 사용자가 임의로 장착 제거 할 수 있기 때문에 사용여부를 먼저 확인해야 함
+또한, 이 영역에 접근하려면 READ/WRITE_External_Storage등의 퍼미션을 받아야 함
+
+# 내부 저장공간 데이터 쓰기/읽기
+FileInputStream, FileOutputStream 클래스의 openOutput, openInput을 이용해서
+내부 저장소에 데이터를 저장하거나 읽어올 수 있음
+
+# 외부 저장공간 데이터 쓰기/읽기
+안드로이드 11에서 SD카드에 데이터 입출력에 제한이 가해져서
+일반적인 방법으로는 접근이 불가
+간단한 해결책은 안드로이드 10버젼으로 낮춰 개발하는 것임
+
+gradle 설정파일의 targetSdkVersion을 30 -> 29로 재설정함
+또한, 매니페스트 파일에 WRITE_EXTERNAL_STORAGE 권한 설정함
